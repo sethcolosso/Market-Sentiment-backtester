@@ -1,4 +1,3 @@
-# backtester.py
 import yfinance as yf
 import pandas as pd
 import numpy as np
@@ -9,9 +8,7 @@ from io import BytesIO
 import warnings
 import time
 warnings.filterwarnings("ignore")
-
 SHILLER_URL = "http://www.econ.yale.edu/~shiller/data/ie_data.xls"
-
 # === FETCH FUNCTIONS ===
 def fetch_price(ticker, start, end=None):
     end = end or datetime.today().strftime('%Y-%m-%d')
@@ -174,5 +171,4 @@ def run_backtest(ticker, start, end=None):
         'latest_pe': df['PE'].iloc[-1],
         'latest_rsi': df['RSI'].iloc[-1]
     }
-
     return df, metrics
