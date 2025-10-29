@@ -1,9 +1,7 @@
-# app.py
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
-
 # === IMPORT YOUR BACKTESTER ===
 try:
     from backtester import run_backtest
@@ -15,14 +13,12 @@ st.set_page_config(page_title="Backtester", layout="wide")
 
 st.title("Market Sentiment Backtester")
 st.markdown("**P/E + VIX + Yield Curve + RSI Strategy**")
-
 # === Sidebar ===
 with st.sidebar:
     st.header("Inputs")
     ticker = st.text_input("Ticker", "AAPL").upper()
     start_date = st.date_input("Start Date", datetime(2022, 5, 10))
     run = st.button("Run Backtest", type="primary")
-
 # === Run Backtest ===
 if run:
     with st.spinner("Fetching data and running backtest..."):
@@ -54,7 +50,6 @@ if run:
             ax2.grid()
 
             st.pyplot(fig)
-
             # === Download ===
             csv = df.to_csv()
             st.download_button("Download Full Results", csv, f"{ticker}_backtest.csv", "text/csv")
@@ -64,4 +59,5 @@ if run:
             st.info("Try: AAPL, MSFT, SPY | Start date after 2015")
 
 else:
+
     st.info("Enter a ticker and click **Run Backtest** to begin.")
